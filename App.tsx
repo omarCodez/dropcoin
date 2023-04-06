@@ -25,10 +25,28 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {HomeScreen} from '@/screens/home';
 
 type SectionProps = PropsWithChildren<{
   title: string;
 }>;
+
+const AppStack = createNativeStackNavigator();
+
+{
+  /* <SafeAreaView> */
+}
+{
+  /* <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} /> */
+}
+{
+  /* <ScrollView contentInsetAdjustmentBehavior="automatic"></ScrollView> */
+}
+{
+  /* </SafeAreaView> */
+}
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -38,10 +56,11 @@ function App(): JSX.Element {
   };
 
   return (
-    <SafeAreaView>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView contentInsetAdjustmentBehavior="automatic"></ScrollView>
-    </SafeAreaView>
+    <NavigationContainer>
+      <AppStack.Navigator>
+        <AppStack.Screen name="HomeScreen" component={HomeScreen} />
+      </AppStack.Navigator>
+    </NavigationContainer>
   );
 }
 
